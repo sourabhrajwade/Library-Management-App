@@ -9,28 +9,30 @@ import InputBase from "@material-ui/core/InputBase";
 import Switch from "@material-ui/core/Switch";
 
 import {withStyles} from "@material-ui/core/styles";
+import {ThemeContext} from './contexts/ThemeContext';
 import styles from "./styles/NavBarStyles";
 
 class Navbar extends Component {
-    
+    static contextType = ThemeContext;
     render() {
+        const {isDarkMode, toggleTheme } = this.context;
         const { classes } = this.props;
         return (
             <div className="{classes.root}">
-                <AppBar position="static" color="primary">
+                <AppBar position="static" color={isDarkMode ? 'default': 'primary'}>
                     <Toolbar>
                         <Typography className={classes.title} variant="h6" color="inherit">
                             Library Manager
                         </Typography>
                         
                         <div className={classes.grow} />
-                        <Switch />
+                        <Switch onChange={toggleTheme}/>
                         
                         <div className={classes.search}>
                            <div className={classes.searchIcon}>
                                <SearchIcon />
                            </div>
-                           <InputBase placeholder="search" classes={{
+                           <InputBase classes={{
                                root: classes.inputRoot,
                                input: classes.InputInput
                            }}/>
