@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React, {Component} from 'react';
+import React, {useContext} from 'react';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -10,7 +10,7 @@ import Switch from "@material-ui/core/Switch";
 
 import {withStyles} from "@material-ui/core/styles";
 import {ThemeContext} from './contexts/ThemeContext';
-import {withLanguageContext} from './contexts/LanguageContext';
+import {LanguageContext} from './contexts/LanguageContext';
 
 import styles from "./styles/NavBarStyles";
 const content = {
@@ -27,13 +27,12 @@ const content = {
       flag: "🇪🇸"
     }
   };
-class Navbar extends Component {
-    static contextType = ThemeContext;
-    render() {
-        const { language } = this.props.languageContext;
+function Navbar (props) {
+    
+        const { language } = useContext(LanguageContext);
         const {search, flag} = content[language];
-        const {isDarkMode, toggleTheme } = this.context;
-        const { classes } = this.props;
+        const {isDarkMode, toggleTheme } = useContext(ThemeContext)
+        const { classes } = props;
         
         return (
             <div className="{classes.root}">
@@ -64,7 +63,7 @@ class Navbar extends Component {
                 
             </div>
         )
-    }
+    
 }
 
-export default withLanguageContext(withStyles(styles) (Navbar));
+export default withStyles(styles) (Navbar);
