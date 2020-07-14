@@ -47,7 +47,7 @@ class Form extends Component {
             <Avatar className={classes.avatar}>
               <VpnKeyOutlinedIcon />
             </Avatar>
-            <Typography variant='h5'>Sign In</Typography>
+      <Typography variant='h5'>{signIn}</Typography>
             <Select value={language} onChange={setLang}>
               <MenuItem value='english'>English</MenuItem>
               <MenuItem value='french'>French</MenuItem>
